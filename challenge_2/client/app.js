@@ -1,9 +1,15 @@
 $(document).ready(function() {
+
   $('#form').submit(function(event) {
+      event.preventDefault();
+      console.log($('textarea').val());
     $.ajax({
     method: "POST",
-    url: "http://localhost:3000",
-    dataType: "json",
+    url: 'http://localhost:3000/',
+    data: JSON.parse($('textarea').val()),
+    // // // contentType: "application/json; charset=utf-8",
+    // // dataType: "json",
+    // processData: false,
     success: function(response) {
             console.log(response);
           },
@@ -12,7 +18,7 @@ $(document).ready(function() {
           }
         });
 
-    event.preventDefault();
+
   });
 });
 
