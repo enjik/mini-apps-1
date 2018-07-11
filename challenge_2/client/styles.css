@@ -1,0 +1,17 @@
+#csv {
+  width: 600px;
+   box-sizing: border-box;
+    border: 2px solid #fd5c63;
+    padding: 20px;
+    margin: 25px;
+}
+body {
+  background-color: #f2f6fa;
+  font-family: 'Courier New';
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}

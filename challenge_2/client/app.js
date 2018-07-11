@@ -6,21 +6,18 @@ $(document).ready(function() {
     $.ajax({
     method: "POST",
     url: 'http://localhost:3000/',
-    data: JSON.parse($('textarea').val()),
-    // // // contentType: "application/json; charset=utf-8",
-    // // dataType: "json",
-    // processData: false,
+    data: {result: $('textarea').val()},
     success: function(response) {
             console.log(response);
+            $('#csv').html(response);
           },
         error: function(response) {
             console.log(response);
           }
         });
-
-
   });
 });
+
 
 // $.ajax({
 //         type: "POST",

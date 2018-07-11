@@ -10,6 +10,22 @@ const axios = require('axios');
 //  next();
 // });
 
+//parse JSON obj into csv format
+var rows = [];
+var flatten = function(obj) {
+    var row = [];
+    for (var key in obj) {
+        if (key === 'children') {
+            rows.push(row.join(','));
+            for (var i = 0; i < obj.children.length; i++) {
+            flatten(obj.children[i]);
+            }
+        } else {
+           row.push(obj[key]);
+        }
+    }
+}
+
 app.use(function(req, res, next) {
   console.log(req.method, req.path);
   next();
@@ -17,15 +33,27 @@ app.use(function(req, res, next) {
 app.use(bodyparser.urlencoded({
   extended: true
 }));
+app.use(bodyparser.json());
 app.use(express.static('client'));
 app.use(express.static('node_modules'));
 
-
-// app.get('/', function());
-//
 app.post('/', function(req, res) {
-  
-  res.send('POST request to homepage');
+  console.log(req.body.result);
+  var form = JSON.parse(req.body.result);
+  var csv = '';
+
+  for (var key in form) {
+      if (key !== 'children') {
+       csv += `${key},`;
+      }
+  }
+  csv = csv.slice(0, csv.length - 1);
+  csv += '<br>';
+  flatten(form);
+  csv += rows.join('<br>');
+  rows = [];
+  //console.log('csvObj:' + csvObj);
+  res.send(csv);
 });
 
 app.listen(3000, () => console.log('Web server listening on localhost:3000 '));
