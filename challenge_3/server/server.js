@@ -32,7 +32,15 @@ app.post('/', function(req, res) {
   })
   res.send(req.body.result);
 });
+
+//var fields = ['First name', 'Last name', 'Email', 'Password', 'Street address', 'City', 'State', 'Zip', 'Phone', 'Card number', 'Month', 'Year', 'CVV', 'Billing zip'];
 //app.get();
+//.forEach(function(elem, i) {
+  //   var line = fields[i] + ': ' + elem;
+  //   return (
+  //     <div>{line}</div>
+  //   )
+  // }
 
 // var sql = 'SELECT * FROM checkout'
 // var err = null;

@@ -1,12 +1,11 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {form: 0, input: []};
+    this.state = {form: 0, input: [], info: []};
     this.handleClick = this.handleClick.bind(this);
     this.handleFirst = this.handleFirst.bind(this);
     this.handleSecond = this.handleSecond.bind(this);
     this.handleThird = this.handleThird.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleClick() {
     this.setState((prevState) => {
@@ -54,11 +53,9 @@ class App extends React.Component {
         console.log(data);
       }
     })
-
-  }
-  handleSubmit() {
     this.handleClick();
   }
+
   render() {
     if (this.state.form === 0 || this.state.form > 4) {
       return (
@@ -103,7 +100,8 @@ class App extends React.Component {
       return (
         <div>
           <h1>Verify information: </h1>
-            <button onClick={this.handleSubmit}>
+          <Verification inputs={this.state.input}/>
+            <button onClick={this.handleClick}>
                 Looks good!
             </button>
         </div>
@@ -145,6 +143,19 @@ function ThirdForm(props) {
       billingZip: <input type="text" name="billing"/><br />
     </form>
  )
+}
+
+var fields = ['First name', 'Last name', 'Email', 'Password', 'Street address', 'City', 'State', 'Zip', 'Phone', 'Card number', 'Expiration Month', 'Expiration Year', 'CVV', 'Billing zip'];
+
+function Verification(props) {
+  return(
+    <div>
+      {props.inputs.map((elem, i) => (
+        <div>{fields[i]}: {elem}</div>
+      )
+    )}
+    </div>
+  )
 }
 //getElementsByName()
 
