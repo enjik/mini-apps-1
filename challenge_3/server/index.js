@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
   if (err) throw err;
   console.log('connected to mysql database!')
-  var sql = 'SELECT * FROM checkout';
+  //var sql = 'SELECT * FROM checkout';
   // connection.query(sql, function(err, results) {
   //   if (err) {
   //     console.log('could not connect!');

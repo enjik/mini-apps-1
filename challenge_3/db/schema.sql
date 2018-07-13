@@ -15,13 +15,13 @@ CREATE TABLE checkout (
   zip VARCHAR(6),
   phone VARCHAR(20),
   creditCard VARCHAR(20),
-  expiryMonth SMALLINT(2),
-  expiryYear SMALLINT(4),
-  cvv SMALLINT(4),
+  expiryMonth VARCHAR(2),
+  expiryYear VARCHAR(4),
+  cvv VARCHAR(4),
   billingZip VARCHAR(6),
   PRIMARY KEY(id)
 );
 INSERT INTO checkout
 (firstName, lastName, email, password, line1, city, state, zip, phone, creditCard, expiryMonth, expiryYear, cvv, billingZip)
-VALUES ('Enji', 'Kim', 'enjikim@live.com', 'mikijne', '4669 E. Rose Garden Lane', 'Scottsdale', 'AZ', 85255, '480-555-5119', '8801015563954744', 1, 19, 471, '85255');
+VALUES ('Enji', 'Kim', 'enjikim@live.com', 'mikijne', '4669 E. Rose Garden Lane', 'Scottsdale', 'AZ', '85255', '480-555-5119', '8801015563954744', '1', '19', '471', '85255');
 SELECT * FROM checkout;

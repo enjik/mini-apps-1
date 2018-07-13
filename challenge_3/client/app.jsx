@@ -6,6 +6,7 @@ class App extends React.Component {
     this.handleFirst = this.handleFirst.bind(this);
     this.handleSecond = this.handleSecond.bind(this);
     this.handleThird = this.handleThird.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleClick() {
     this.setState((prevState) => {
@@ -43,6 +44,19 @@ class App extends React.Component {
     })
     this.state.input = this.state.input.concat(localStorage);
     console.log(this.state.input);
+
+    $.ajax({
+      method: "POST",
+      url: "http://localhost:3000/",
+      data: {result: this.state.input},
+      dataType: 'json',
+      success: function(data) {
+        console.log(data);
+      }
+    })
+
+  }
+  handleSubmit() {
     this.handleClick();
   }
   render() {
@@ -89,7 +103,7 @@ class App extends React.Component {
       return (
         <div>
           <h1>Verify information: </h1>
-            <button onClick={this.handleClick}>
+            <button onClick={this.handleSubmit}>
                 Looks good!
             </button>
         </div>
@@ -125,7 +139,7 @@ function ThirdForm(props) {
   return(
     <form>
       card number: <input type="text" name="card"/><br />
-    expiry month: <inpt type="text" name="month"/><br />
+      expiry month: <input type="text" name="month"/><br />
       expiry year: <input type="text" name="year"/><br />
       cvv: <input type="text" name="cvv"/><br />
       billingZip: <input type="text" name="billing"/><br />
